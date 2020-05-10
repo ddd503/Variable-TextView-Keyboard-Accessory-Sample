@@ -13,6 +13,8 @@
 		4596276E2468174C00C5BA8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4596276C2468174C00C5BA8D /* Main.storyboard */; };
 		459627702468174F00C5BA8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4596276F2468174F00C5BA8D /* Assets.xcassets */; };
 		459627732468174F00C5BA8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459627712468174F00C5BA8D /* LaunchScreen.storyboard */; };
+		4596277C246817F300C5BA8D /* VariableInputTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4596277B246817F300C5BA8D /* VariableInputTextView.xib */; };
+		4596277E246817FD00C5BA8D /* VariableInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4596277D246817FD00C5BA8D /* VariableInputTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		4596276F2468174F00C5BA8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		459627722468174F00C5BA8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		459627742468174F00C5BA8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4596277B246817F300C5BA8D /* VariableInputTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariableInputTextView.xib; sourceTree = "<group>"; };
+		4596277D246817FD00C5BA8D /* VariableInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableInputTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		459627652468174C00C5BA8D /* Variable-TextView-Keyboard-Accessory-Sample */ = {
 			isa = PBXGroup;
 			children = (
+				4596277A246817D400C5BA8D /* VariableInputTextView */,
 				459627662468174C00C5BA8D /* AppDelegate.swift */,
 				459627682468174C00C5BA8D /* SceneDelegate.swift */,
 				4596276A2468174C00C5BA8D /* ViewController.swift */,
@@ -65,6 +70,15 @@
 				459627742468174F00C5BA8D /* Info.plist */,
 			);
 			path = "Variable-TextView-Keyboard-Accessory-Sample";
+			sourceTree = "<group>";
+		};
+		4596277A246817D400C5BA8D /* VariableInputTextView */ = {
+			isa = PBXGroup;
+			children = (
+				4596277B246817F300C5BA8D /* VariableInputTextView.xib */,
+				4596277D246817FD00C5BA8D /* VariableInputTextView.swift */,
+			);
+			path = VariableInputTextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4596277C246817F300C5BA8D /* VariableInputTextView.xib in Resources */,
 				459627732468174F00C5BA8D /* LaunchScreen.storyboard in Resources */,
 				459627702468174F00C5BA8D /* Assets.xcassets in Resources */,
 				4596276E2468174C00C5BA8D /* Main.storyboard in Resources */,
@@ -138,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4596277E246817FD00C5BA8D /* VariableInputTextView.swift in Sources */,
 				4596276B2468174C00C5BA8D /* ViewController.swift in Sources */,
 				459627672468174C00C5BA8D /* AppDelegate.swift in Sources */,
 				459627692468174C00C5BA8D /* SceneDelegate.swift in Sources */,
