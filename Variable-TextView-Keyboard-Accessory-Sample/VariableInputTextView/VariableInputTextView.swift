@@ -27,6 +27,7 @@ class VariableInputTextView: UIView {
     private var currentTextViewHeight: CGFloat = 33
     private let maxTextViewHeight: CGFloat = 80
     private let minTextViewHeight: CGFloat = 33
+    private var inputTextViewOriginalFrame: CGRect = .zero
 
     static func make(frame: CGRect) -> VariableInputTextView {
         let view = UINib(nibName: "VariableInputTextView", bundle: nil)
@@ -49,6 +50,7 @@ class VariableInputTextView: UIView {
         topBorder.frame = CGRect(origin: .zero, size: CGSize(width: bounds.width, height: 1))
         topBorder.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         inputTextViewContainer.layer.addSublayer(topBorder)
+        inputTextViewOriginalFrame = inputTextView.frame
     }
 
     @IBAction func tappedOutputTextButton(sender: UIButton) {
@@ -71,8 +73,9 @@ class VariableInputTextView: UIView {
     }
 
     private func adjustInputTextViewFrameWhenTextViewDidChange(variableHeight: CGFloat) {
-        // IB側のinputTextViewに対する制約を再現する（一度autoLayoutを解除するため）
-        inputTextView.frame = CGRect(x: 20, y: 15, width: self.frame.width - 40, height: variableHeight)
+        // IB側のinputTextViewに対する制約を再現する（autoLayoutを解除しsizeToFitするため）
+        inputTextView.frame = CGRect(origin: inputTextViewOriginalFrame.origin,
+                                     size: CGSize(width: inputTextViewOriginalFrame.width, height: variableHeight))
     }
 }
 
