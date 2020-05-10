@@ -77,16 +77,6 @@ class VariableInputTextView: UIView {
 }
 
 extension VariableInputTextView: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-
-            }
-        }
-        return true
-    }
-
     func textViewDidChange(_ textView: UITextView) {
         let contentHeight = inputTextView.contentSize.height
         if minTextViewHeight <= contentHeight && contentHeight <= maxTextViewHeight {
@@ -95,7 +85,6 @@ extension VariableInputTextView: UITextViewDelegate {
             inputTextView.isScrollEnabled = false
             let resizedHeight = inputTextView.frame.size.height
             inputTextViewHeightConstraint.constant = resizedHeight
-
             adjustInputTextViewFrameWhenTextViewDidChange(variableHeight: resizedHeight)
 
             if resizedHeight > currentTextViewHeight {
