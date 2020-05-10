@@ -73,7 +73,7 @@ class VariableInputTextView: UIView {
     }
 
     private func adjustInputTextViewFrameWhenTextViewDidChange(variableHeight: CGFloat) {
-        // IB側のinputTextViewに対する制約を再現する（autoLayoutを解除しsizeToFitするため）
+        // 手動でレイアウトをいじっているため、ここでAutoLayoutで決められたサイズに戻す
         inputTextView.frame = CGRect(origin: inputTextViewOriginalFrame.origin,
                                      size: CGSize(width: inputTextViewOriginalFrame.width, height: variableHeight))
     }
@@ -83,7 +83,6 @@ extension VariableInputTextView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         let contentHeight = inputTextView.contentSize.height
         if minTextViewHeight <= contentHeight && contentHeight <= maxTextViewHeight {
-            inputTextView.translatesAutoresizingMaskIntoConstraints = true
             inputTextView.sizeToFit()
             inputTextView.isScrollEnabled = false
             let resizedHeight = inputTextView.frame.size.height

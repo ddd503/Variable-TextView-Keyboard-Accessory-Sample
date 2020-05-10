@@ -55,7 +55,7 @@
                         <constraint firstAttribute="height" constant="40" id="G6H-mx-091"/>
                         <constraint firstAttribute="width" constant="80" id="O4I-fy-dM2"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="描画">
                         <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </state>
