@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // VariableInputTextViewを生成して画面外に置いておく
+        // VariableInputTextViewを生成して画面外に置いておく（描画後に再調整するが、zero以外を入れないとdrawされないため何かいれる）
         inputTextView = VariableInputTextView.make(frame: CGRect(origin: CGPoint(x: 0, y: view.bounds.height),
                                                                  size: view.bounds.size))
         inputTextView.delegate = self
@@ -62,6 +62,13 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: VariableInputTextViewDelegate {
+    func didDrawView() {
+        // 描画後初期配置を調整する
+        // 親Viewのサイズ確定後のこのタイミングでinputTextViewの初期配置を調整（modalPresentationStyle.automatic対策）
+        inputTextView.frame = CGRect(origin: CGPoint(x: 0, y: view.bounds.height),
+                                     size: view.bounds.size)
+    }
+
     func tappedOutputButton(text: String, _ completion: @escaping () -> ()) {
         outputResultLabel.text = text
         completion()

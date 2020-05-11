@@ -9,6 +9,7 @@
 import UIKit
 
 protocol VariableInputTextViewDelegate: AnyObject {
+    func didDrawView()
     func tappedOutputButton(text: String, _ completion: @escaping () -> ())
 }
 
@@ -58,6 +59,7 @@ class VariableInputTextView: UIView {
         inputTextViewOriginalFrame = inputTextView.frame
         adjustInputTextViewFrameWhenTextViewDidChangeIfNeeded()
         inputTextView.text = ""
+        delegate?.didDrawView()
     }
 
     @IBAction func tappedOutputTextButton(sender: UIButton) {
