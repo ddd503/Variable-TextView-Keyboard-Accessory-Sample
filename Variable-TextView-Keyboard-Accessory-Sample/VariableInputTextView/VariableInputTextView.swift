@@ -86,15 +86,17 @@ class VariableInputTextView: UIView {
     private func adjustInputTextViewFrameWhenTextViewDidChangeIfNeeded() {
         let contentHeight = inputTextView.contentSize.height
         if minTextViewHeight <= contentHeight && contentHeight <= maxTextViewHeight {
+            // 文字列のサイズに合わせる
             inputTextView.sizeToFit()
             inputTextView.isScrollEnabled = false
             let resizedHeight = inputTextView.frame.size.height
-
+            // 前回サイズと変化ないならリターン
             guard resizedHeight != currentTextViewHeight else { return }
-
+            // 変化ありならTextView自体のFrameを調節する
             inputTextViewHeightConstraint.constant = resizedHeight
             adjustInputTextViewFrameWhenTextViewDidChange(variableHeight: resizedHeight)
 
+            // 変化ありならContiner側のFrameも調節する
             if resizedHeight > currentTextViewHeight {
                 let addingHeight = resizedHeight - currentTextViewHeight
                 inputTextViewContainerHeightConstraint.constant += addingHeight
@@ -105,6 +107,7 @@ class VariableInputTextView: UIView {
                 currentTextViewHeight = resizedHeight
             }
         } else {
+            // max超えてたら最大値を入れ続ける
             inputTextView.isScrollEnabled = true
             inputTextViewHeightConstraint.constant = currentTextViewHeight
             adjustInputTextViewFrameWhenTextViewDidChange(variableHeight: currentTextViewHeight)
