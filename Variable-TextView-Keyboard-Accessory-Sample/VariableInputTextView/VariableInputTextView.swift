@@ -21,8 +21,8 @@ class VariableInputTextView: UIView {
     @IBOutlet weak private var inputTextViewContainer: UIView!
     @IBOutlet weak private var outputTextBotton: UIButton!
     @IBOutlet weak private var closeBotton: UIButton!
-    @IBOutlet weak var inputTextViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var inputTextViewContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var inputTextViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var inputTextViewContainerHeightConstraint: NSLayoutConstraint!
 
     weak var delegate: VariableInputTextViewDelegate?
     private var currentTextViewHeight = CGFloat(0)
@@ -86,26 +86,18 @@ class VariableInputTextView: UIView {
     private func adjustInputTextViewFrameWhenTextViewDidChangeIfNeeded() {
         let contentHeight = inputTextView.contentSize.height
         if minTextViewHeight <= contentHeight && contentHeight <= maxTextViewHeight {
+            // 変化ありの場合だけ調整したいが、現状できていない（初回表示考慮すると）
             // 文字列のサイズに合わせる
             inputTextView.sizeToFit()
             inputTextView.isScrollEnabled = false
             let resizedHeight = inputTextView.frame.size.height
-            // 前回サイズと変化ないならリターン
-            guard resizedHeight != currentTextViewHeight else { return }
-            // 変化ありならTextView自体のFrameを調節する
+             // TextView自体のFrameを調節する
             inputTextViewHeightConstraint.constant = resizedHeight
             adjustInputTextViewFrameWhenTextViewDidChange(variableHeight: resizedHeight)
-
-            // 変化ありならContiner側のFrameも調節する
-            if resizedHeight > currentTextViewHeight {
-                let addingHeight = resizedHeight - currentTextViewHeight
-                inputTextViewContainerHeightConstraint.constant += addingHeight
-                currentTextViewHeight = resizedHeight
-            } else {
-                let subtractingHeight = currentTextViewHeight - resizedHeight
-                inputTextViewContainerHeightConstraint.constant -= subtractingHeight
-                currentTextViewHeight = resizedHeight
-            }
+             // Continer側のFrameも調節する
+            let adjustHeight = resizedHeight - currentTextViewHeight
+            inputTextViewContainerHeightConstraint.constant += adjustHeight
+            currentTextViewHeight = resizedHeight
         } else {
             // max超えてたら最大値を入れ続ける
             inputTextView.isScrollEnabled = true
@@ -126,4 +118,3 @@ extension VariableInputTextView: UITextViewDelegate {
         adjustInputTextViewFrameWhenTextViewDidChangeIfNeeded()
     }
 }
-
